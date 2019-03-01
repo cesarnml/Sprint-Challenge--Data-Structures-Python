@@ -9,14 +9,21 @@ f.close()
 f = open('names_2.txt', 'r')
 names_2 = f.read().split("\n")  # List containing 10000 names
 f.close()
+
+# Under ~.01 sec solution
 # create a dictionary of names_2 where elements are keys and True is value
 name_2_dic = dict((name, True) for name in names_2)
 
 duplicates = []
-for name_1 in names_1:
-        if name_1 in name_2_dic:
-            duplicates.append(name_1)
+# for name_1 in names_1:
+#         if name_1 in name_2_dic:
+#             duplicates.append(name_1)
 
+# ~1 sec solution
+# Stretch Solution with limited memory:
+for name_1 in names_1:
+        if name_1 in names_2:
+            duplicates.append(name_1)
 end_time = time.time()
 print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
 print (f"runtime: {end_time - start_time} seconds")
